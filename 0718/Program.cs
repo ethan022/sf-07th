@@ -1,367 +1,257 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿//
+// 📌 1. 열거형 + switch문 예제 (Animal)
+// enum은 맨 밑에 위치
+//
 
-// 열거형
+Animal animal = Animal.Rabbit;
 
-//using System.Diagnostics.Metrics;
-
-//Console.WriteLine("Hello, World!");
-
-
-//Animal animal = Animal.Rabbit;
-
-//switch (animal)
-//{
-//    case Animal.Dog:
-//        Console.WriteLine("강아지 입니다.");
-//        break;
-//    case Animal.Cat:
-//        Console.WriteLine("고양이 입니다.");
-//        break;
-//    case Animal.Rabbit:
-//        Console.WriteLine("토끼 입니다.");
-//        break;
-//    case Animal.Bear:
-//        Console.WriteLine("곰 입니다.");
-//        break;
-//    case Animal.Lion:
-//        Console.WriteLine("사자 입니다.");
-//        break;
-//    default:
-//        Console.WriteLine("모르겠습니다...");
-//        break;
-//}
+switch (animal)
+{
+    case Animal.Dog:
+        Console.WriteLine("강아지입니다."); break;
+    case Animal.Cat:
+        Console.WriteLine("고양이입니다."); break;
+    case Animal.Rabbit:
+        Console.WriteLine("토끼입니다."); break;
+    case Animal.Bear:
+        Console.WriteLine("곰입니다."); break;
+    case Animal.Lion:
+        Console.WriteLine("사자입니다."); break;
+    default:
+        Console.WriteLine("모르겠습니다..."); break;
+}
 
 
-//// random
-//// 컴퓨터는 랜덤값의 %3을 했을때  0 이 가위, 1 이 바위, 2 보 
-//// 유저가 입력 이겼는지? 비겼는지? 졌는지? 출력해주세요.
 
-//// if문 , switch문 둘중 아무거나 사용
+//
+// 📌 2. 가위바위보 게임 (랜덤 + enum + 조건문)
+//
 
-//Random random = new Random();
-//// 1 ~ 9까지 숫자 랜덤으로 생성
-//int randomValue = random.Next(1, 10);
-//// 0 ~ 2 까지 값이 나옵니다.
-//int computer = randomValue % 3;
-//Console.WriteLine("컴퓨터 : " + (Rps)computer);
+Random random = new Random();
 
-//// 1 ~ 9까지 숫자 랜덤으로 생성
-//int randomValue2 = random.Next(1, 10);
-//// 0 ~ 2 까지 값이 나옵니다.
-//int user = randomValue2 % 3;
-//Console.WriteLine("유저 : " + (Rps)user);
+// 컴퓨터 선택
+int computer = random.Next(1, 10) % 3;
+Console.WriteLine("컴퓨터: " + (Rps)computer);
 
+// 유저 선택
+int user = random.Next(1, 10) % 3;
+Console.WriteLine("유저: " + (Rps)user);
 
-//if (computer == user)
-//{
-//    Console.WriteLine("결과 : 비겼습니다.");
-//} else if ((user == 0 && computer == 2) ||
-//            (user == 1 && computer == 0) ||
-//            (user == 2 && computer == 1))
-//{
-//    Console.WriteLine("결과 : 이겼습니다.");
-//} else
-//{
-//    Console.WriteLine("결과 : 졌습니다..");
-//}
+// 결과 판별
+if (computer == user)
+    Console.WriteLine("결과: 비겼습니다.");
+else if ((user == 0 && computer == 2) ||
+         (user == 1 && computer == 0) ||
+         (user == 2 && computer == 1))
+    Console.WriteLine("결과: 이겼습니다.");
+else
+    Console.WriteLine("결과: 졌습니다.");
 
 
-//int selection = 0;
+//
+// 📌 3. 요일 enum + 랜덤 + switch문
+//
 
-//pos:
-//if (selection == 0)
-//{
-//    selection = 1;
-//    goto pos;
-//}
+int dayValue = new Random().Next(0, 20); // 0~19
+Day day = (Day)dayValue;
+Console.WriteLine("랜덤 요일: " + day);
 
-//int days = random.Next(0, 20);
-//// enum, switch문을 사용해서 요일별 메시지를 출력
-//// 0 월 1 화, 2 수, ~~ 6 일요일 
-
-//// int를 Enum으로 변환
-//Day day = (Day) days;
-//Console.WriteLine(day);
-
-//switch (day) {
-//    case Day.Monday:
-//        Console.WriteLine("월요일");
-//        break;
-//    case Day.Tuseday:
-//        Console.WriteLine("화요일");
-//        break;
-//    case Day.Wednesday:
-//        Console.WriteLine("수요일");
-//        break;
-//    case Day.Thursday:
-//        Console.WriteLine("목요일");
-//        break;
-//    case Day.Friday:
-//        Console.WriteLine("금요일");
-//        break;
-//    case Day.Saturday:
-//        Console.WriteLine("토요일");
-//        break;
-//    case Day.Sunday:
-//        Console.WriteLine("일요일");
-//        break;
-//    default:
-//        Console.WriteLine("잘못되었습니다.");
-//        break;
-//}
-
-// 반복문
-// i = i + 1
-//for (int i = 0; i < 10; i++)
-//{
-//    Console.WriteLine(i + "번째");
-//}
-
-// 1부터 5까지 출력
-// for문
-//for (int i = 1;i < 6; i++)
-//{
-//    Console.WriteLine(i + "번째");
-//}
-
-// 10부터 1까지 거꾸로 출력
-// for문
-//for (int i = 10; i > 0; i--)
-//{
-//    Console.WriteLine(i + "번째");
-//}
-
-//int i = 0;
-//while (i <= 5)
-//{
-//    Console.WriteLine(i + "번째 hello");
-//    i++;
-//}
-
-//// 1부터 5까지 출력
-//// while 문
-//int j = 1;
-//while (j <= 5)
-//{
-//    Console.WriteLine(j + "번째");
-//    j++;
-//}
-
-//int count = 0;
-//// 무한루프
-//while (true)
-//{
-//    count++;
-//    if (count % 2 == 1)
-//    {
-//        continue;
-//    }
-//    Console.WriteLine("count: " + count);
-
-//    if (count == 5)
-//    {
-//        break;
-//    }
-//}
-
-//// 1. 1부터 10까지 짝수만 출력
-//for (int idx = 1; idx <= 10; idx++)
-//{
-//    if (idx % 2 == 0)
-//    {
-//        Console.WriteLine(idx);
-//    }
-//}
-
-//int jdx = 1;
-//while (jdx <= 10)
-//{
-//    if (jdx % 2 == 0)
-//    {
-//        Console.WriteLine(jdx);
-//    }
-//    jdx++;
-//}
-
-//// 2. while문을 사용해서 1부터 100까지 합 구하기
-//int k = 1;
-//int result = 0;
-//while (k <= 100)
-//{
-//    result += k;
-//    k++;
-//}
-
-//Console.WriteLine("result: " + result);
-
-//do while
-// 최소 1번은 무조건 실행이 된다.
-
-//while (num < 1)
-//{
-//    Console.WriteLine(num);
-//    num++;
-//}
-//int num = 1;
-
-//do
-//{
-//    Console.WriteLine(num);
-//    num++;
-//}
-//while (num < 1);
+switch (day)
+{
+    case Day.Monday: Console.WriteLine("월요일"); break;
+    case Day.Tuseday: Console.WriteLine("화요일"); break;
+    case Day.Wednesday: Console.WriteLine("수요일"); break;
+    case Day.Thursday: Console.WriteLine("목요일"); break;
+    case Day.Friday: Console.WriteLine("금요일"); break;
+    case Day.Saturday: Console.WriteLine("토요일"); break;
+    case Day.Sunday: Console.WriteLine("일요일"); break;
+    default: Console.WriteLine("잘못된 요일입니다."); break;
+}
 
 
-//// 중첩 반복문
-//for (int i = 0; i < 5; i++)
-//{
-//    for (int j = 0; j < 5; j++)
-//    {
-//        Console.WriteLine("i:" + i );
-//        Console.WriteLine("j:" + j);
-//        Console.WriteLine("i + j = " + (i + j));
-//    }
-//}
+//
+// 📌 4. for, while, do-while 반복문 기초 예제
+//
 
-// 구구단 2단 출력(중첩 for문)
+// for문: 1~5 출력
+for (int i = 1; i <= 5; i++)
+{
+    Console.WriteLine(i + "번째");
+}
 
-//for (int i = 2; i < 3; i++)
-//{
-//    Console.WriteLine($"{i} 단");
-//    for (int j = 1; j < 10; j++)
-//    {
-//        Console.WriteLine($"{i} * {j} = {i * j}");
-//    }
-//    Console.WriteLine();
-//}
+// while문: 1~5 출력
+int k = 1;
+while (k <= 5)
+{
+    Console.WriteLine(k + "번째");
+    k++;
+}
 
-// 구구단 1 ~ 9단 출력(중첩 for문)
-//for (int i = 1; i < 10; i++)
-//{
-//    Console.WriteLine($"{i} 단");
-//    for (int j = 1; j < 10; j++)
-//    {
-//        Console.WriteLine($"{i} * {j} = {i * j}");
-//    }
-//    Console.WriteLine();
-//}
+// do-while문: 조건이 false여도 1번은 실행됨
+int num = 1;
+do
+{
+    Console.WriteLine(num);
+    num++;
+} while (num < 1);
 
 
+//
+// 📌 5. 반복문: 짝수만 출력 / 합계 계산
+//
+
+// 1~10 중 짝수만 출력
+for (int i = 1; i <= 10; i++)
+{
+    if (i % 2 == 0)
+        Console.WriteLine("짝수: " + i);
+}
+
+// while문으로 1~100까지 합 구하기
+int k1 = 1;
+int result = 0;
+while (k1 <= 100)
+{
+    result += k1;
+    k1++;
+}
+Console.WriteLine("1~100 합: " + result);
+
+
+//
+// 📌 6. 중첩 for문: 구구단 출력
+//
+
+// 2단 출력
+for (int i = 2; i <= 2; i++)
+{
+    Console.WriteLine($"{i}단");
+    for (int j = 1; j <= 9; j++)
+    {
+        Console.WriteLine($"{i} * {j} = {i * j}");
+    }
+}
+
+// 1~9단 전체 출력
+for (int i = 1; i <= 9; i++)
+{
+    Console.WriteLine($"{i}단");
+    for (int j = 1; j <= 9; j++)
+    {
+        Console.WriteLine($"{i} * {j} = {i * j}");
+    }
+    Console.WriteLine();
+}
+
+
+//
+// 📌 7. 배열 선언과 출력 (기초)
+//
 
 // 배열 선언과 초기화
-// 1.
-//using System.Globalization;
+int[] scores1 = { 90, 80, 70 };
 
-//int[] scores1 = { 90, 80, 70, 55, 64, 89, 100, 20, 56 };
+// 인덱스로 접근
+Console.WriteLine(scores1[0]);
+Console.WriteLine(scores1[1]);
 
-//// 0번째 인덱스 (맨 처음)
-//Console.WriteLine(scores1[0]);
-//Console.WriteLine(scores1[1]);
-//Console.WriteLine(scores1[2]);
+// 전체 출력 (for문)
+for (int i = 0; i < scores1.Length; i++)
+{
+    Console.WriteLine(scores1[i]);
+}
 
-//// 배열의 모든 원소를 출력
-//for (int i = 0; i < scores1.Length; i++)
-//{
-//    Console.WriteLine(scores1[i]);
-//}
-
-//// 배열의 길이 출력
-//Console.WriteLine(scores1.Length);
-
-//// 2.
-//int[] scores2 = new int[3];
-//scores2[0] = 10;
-//scores2[1] = 20;
-//scores2[2] = 30;
-
-//for (int i = 0; i < scores2.Length; i++)
-//{
-//    Console.WriteLine(scores2[i]);
-//}
+// 길이 확인
+Console.WriteLine("배열 길이: " + scores1.Length);
 
 
-//string str1 = "문자열 입니다.";
+//
+// 📌 8. 배열 선언 (new 사용) + 순회
+//
 
-//Console.WriteLine(str1);
-//// 문자열의 길이 출력
-//Console.WriteLine(str1.Length);
+int[] scores2 = new int[3];
+scores2[0] = 10;
+scores2[1] = 20;
+scores2[2] = 30;
 
-//string greeting = "안녕하세요" + str1;
-//string greeting2 = $"안녕하세요 {str1}";
-
-//Console.WriteLine(greeting);
-//Console.WriteLine(greeting2);
-
-//string str2 = "hello";
-//Console.WriteLine(str2.ToUpper());
-
-//String str3 = "HELLO";
-//Console.WriteLine(str3.ToLower());
-
-//// 특정 단어의 포함 여부 확인
-//Console.WriteLine(str3.Contains("L"));
+for (int i = 0; i < scores2.Length; i++)
+{
+    Console.WriteLine(scores2[i]);
+}
 
 
-//Console.WriteLine(str3[3]); // L
+//
+// 📌 9. 문자열(String) 예제
+//
+
+string str1 = "문자열입니다.";
+Console.WriteLine(str1);
+Console.WriteLine("길이: " + str1.Length);
+
+// 문자열 연결
+string greeting1 = "안녕하세요 " + str1;
+string greeting2 = $"안녕하세요 {str1}";
+Console.WriteLine(greeting1);
+Console.WriteLine(greeting2);
+
+// 문자열 메서드
+string str2 = "hello";
+Console.WriteLine(str2.ToUpper());  // HELLO
+
+string str3 = "HELLO";
+Console.WriteLine(str3.ToLower());  // hello
+
+Console.WriteLine(str3.Contains("L")); // true
+Console.WriteLine(str3[3]); // 인덱스 접근: L
 
 
-// 이름 3개를 배열로 선언 하고 출력하세요.
-// "안녕하세요. {이름} 님" 
+//
+// 📌 10. 이름 배열 + 인사 메시지
+//
 string[] names = { "철수", "영희", "짱구" };
 
+// for문
 for (int i = 0; i < names.Length; i++)
 {
     Console.WriteLine($"안녕하세요. {names[i]} 님");
 }
 
-//for each
-// 순회 한다.
-foreach (string str1 in names)
+// foreach문
+foreach (string name in names)
 {
-    Console.WriteLine($"안녕하세요. {str1} 님");
+    Console.WriteLine($"안녕하세요. {name} 님");
 }
 
-
-// 점수 평균 구하기
-// 배열의 길이 사용!
+//
+// 📌 11. 배열 평균 구하기
+//
 int[] scores3 = { 78, 24, 54 };
 int sum = 0;
 
-// 모든 점수를 더한 값
-for (int i = 0;i < scores3.Length;i++)
+for (int i = 0; i < scores3.Length; i++)
 {
     sum += scores3[i];
 }
 
 double avg = (double)sum / scores3.Length;
-Console.WriteLine("평균 : " + avg);
+Console.WriteLine("평균: " + avg);
 
 
+
+// ------------------------------
+// 📌 열거형(enum) 정의
+// ------------------------------
 enum Day
 {
-    Monday,
-    Tuseday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
+    Monday, Tuseday, Wednesday, Thursday, Friday, Saturday, Sunday
 }
 
-
-enum Rps {
-    Scissor,
-    Rock,
-    Paper
+enum Rps
+{
+    Scissor, Rock, Paper
 }
-
 
 enum Animal
 {
-    Dog,        // 0
-    Cat,        // 1
-    Rabbit,     // 2
-    Bear,       // 3
-    Lion        // 4
+    Dog, Cat, Rabbit, Bear, Lion
 }
-
