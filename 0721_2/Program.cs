@@ -72,6 +72,32 @@
             return num % 2 == 0;
         }
 
+        // 자기소개 함수
+        static void Introduce(string name, int age)
+        {
+            Console.WriteLine($"안녕하세요. 저는 {name}이고, 나이는 {age} 입니다.");
+        }
+
+        // 평균
+        static double Avg(int x, int y)
+        {
+            return (x + y) / 2;
+        }
+
+        // 문자열 확인
+        static bool IsEmpty(string str) {
+            //삼항 연산자
+            return str == "" ? true : false;
+
+            //if (str == "")
+            //{
+            //    return true;
+            //} else
+            //{
+            //    return false;
+            //}
+        }
+
         // ------------------------
         // 🚀 프로그램 시작 지점 (Main 함수)
         // ------------------------
@@ -101,10 +127,14 @@
             // ------------------------
 
             // 1. 자기소개 함수: 이름과 나이를 매개변수로 받아 출력
+            Introduce("에단", 30);
 
             // 2. 평균 계산 함수: 두 수를 받아 평균을 반환
+            double numAvg = Avg(30, 20);
+            Console.WriteLine(numAvg);
 
             // 3. 문자열이 비었는지 확인하는 함수: 빈 문자열이면 true 반환
+            Console.WriteLine(IsEmpty("aaa"));
         }
     }
 }
