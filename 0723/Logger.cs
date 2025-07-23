@@ -13,6 +13,12 @@ namespace _0723
     {
         private static string log;
 
+        // 일반 생성자
+        public Logger()
+        {
+
+        }
+
         // 정적 생성자 
         static Logger()
         {

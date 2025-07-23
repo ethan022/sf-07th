@@ -16,29 +16,51 @@
             person1.PrintInfo();
             person2.PrintInfo();
 
-            Console.WriteLine(Math.PI);
+
+            // Math math = new Math
+            // math.pi 
+            
+            Console.WriteLine(Math.PI); // 3.1415
+            // math.GetCircleArea(10)
             Console.WriteLine(Math.GetCircleArea(10));
 
             Counter.Increment(); // 1
             Counter.Increment(); // 2
             Counter.Increment(); // 3
-            Counter.ShowInfo(); // Console
+            Counter.ShowInfo(); // Console 3
 
             Counter.Decrement(); // 2
-            Counter.ShowInfo(); // Console
+            Counter.ShowInfo(); // Console 2
 
             Logger.WriteLog("첫 번째 로그");
             Logger.WriteLog("두 번째 로그");
             Logger.WriteLog("세 번째 로그");
 
+            // 객체 만듬
+            Counter c1 = new Counter(); // instanceId : 3, count: 5
+            Counter c2 = new Counter(); // instanceId : 4, count: 5
+            Counter c3 = new Counter(); // instanceId : 5, count: 5
+            // instanceId 개별 박스
+            // count 공통 박스
 
-            Counter c1 = new Counter();
-            c1.Show(); //
-            Counter c2 = new Counter();
-            c2.Show(); // 
-            Counter c3 = new Counter();
-            c3.Show(); //
+            c1.Show(); // instanceId : 3, count: 5
+            c2.Show(); // instanceId : 4, count: 5
+            c3.Show(); // instanceId : 5, count: 5
 
+
+            Library.ShowLibraryInfo();
+            // 100권 추가
+            Library.AddBook(100);
+
+            // 150권 대출
+            Library.BorrowBook(150);
+
+            Library.ShowLibraryInfo();
+
+            // 200권 반납
+            Library.ReturnBook(250);
+
+            Library.ShowLibraryInfo();
         }
     }
 }
