@@ -96,7 +96,7 @@ namespace _0722_2
             PageCount = pageCount;
 
             Console.WriteLine($"새 도서 등록 완료: {title}");
-        }
+        } 
 
         public void ShowInfo()
         {
