@@ -59,4 +59,16 @@ namespace _0724
             Console.WriteLine($"{Name} 이(가) 나무에 올라갑니다.");
         }
     }
+
+    public class Bird : Animal {
+        public override void MakeSound()
+        {
+            Console.WriteLine($"{Name}: 짹짹!");
+        }
+
+        public void Fly()
+        {
+            Console.WriteLine($"{Name} 이(가) 하늘을 날아갑니다!");
+        }
+    }
 }

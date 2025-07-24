@@ -347,6 +347,36 @@ namespace _0724
             Console.WriteLine("  2. is 연산자: 타입 체크 후 안전 캐스팅");
             Console.WriteLine("  3. 패턴 매칭: 체크 + 할당 한 번에 (권장)");
             Console.WriteLine("  4. try-catch: 예외 처리로 안전성 확보");
+            Console.WriteLine();
+
+
+            // 객체 생성
+            Console.WriteLine($"=== 1단계 객체 생성 ===");
+            Bird myBird = new Bird { Name = "참새" };
+
+            Console.WriteLine($"Bird 생성 : {myBird.Name}");
+            Console.WriteLine();
+
+            Console.WriteLine($"=== 2단계 업 캐스팅 ===");
+            Animal animal4 = myBird;
+            Console.WriteLine($"업캐스팅 완료");
+            Console.WriteLine($"animal4: Bird => Animal");
+            Console.WriteLine();
+
+            Console.WriteLine($"=== 3단계 업 캐스팅된 객체의 호출 가능 매서드들 ===");
+            animal4.MakeSound();
+            animal4.Sleep();
+            Console.WriteLine();
+
+            Console.WriteLine($"=== 4단계 다운 캐스팅 ===");
+            if (animal4 is Bird bird)
+            {
+                Console.WriteLine($"{bird.Name}을 Bird로 다운 캐스팅 성공!");
+                bird.Fly();
+            }
+            Console.WriteLine();
+
+
         }
     }
 }
