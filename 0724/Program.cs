@@ -43,283 +43,310 @@ namespace _0724
     {
         static void Main(string[] args)
         {
-            // 콘솔 출력 인코딩을 UTF-8로 설정
+            // 콘솔 인코딩 설정 (이모지 및 특수문자 지원)
             Console.OutputEncoding = Encoding.UTF8;
 
-
             // ==========================================
-            // 업캐스팅 (Upcasting) 예제
+            // 컴파일타임 vs 런타임 개념 설명 및 예제
             // ==========================================
-            Console.WriteLine("=== 업캐스팅 예제 ===");
+            Console.WriteLine("========================================");
+            Console.WriteLine("    컴파일타임 vs 런타임 개념 설명");
+            Console.WriteLine("========================================");
             Console.WriteLine();
 
-            // 1단계: Dog 객체 생성 (객체 초기화자 사용)
+            // 컴파일타임에 결정되는 것들
+            Console.WriteLine("■ 컴파일타임에 결정되는 것들 (코드 작성 시점):");
+            Console.WriteLine("  1. 문법 검사 - 코드가 올바르게 작성되었는가?");
+            Console.WriteLine("  2. 타입 검사 - 변수 타입이 올바른가?");
+            Console.WriteLine("  3. 메서드 존재 확인 - 호출하는 메서드가 있는가?");
+            Console.WriteLine("  4. 메서드 오버로딩 결정 - 어떤 오버로딩 메서드를 사용할까?");
+            Console.WriteLine();
+
+            // 컴파일타임 예제
+            Console.WriteLine("[컴파일타임 예제]");
+            int a = 10;                         // 컴파일타임: int 타입 확인
+            double b = 20.5;                    // 컴파일타임: double 타입 확인  
+            Console.WriteLine("Hello World");   // 컴파일타임: WriteLine 메서드 존재 확인
+            Console.WriteLine("위 코드들은 컴파일타임에 검사되어 통과했습니다.");
+            Console.WriteLine();
+
+            // 런타임에 결정되는 것들
+            Console.WriteLine("■ 런타임에 결정되는 것들 (프로그램 실행 중):");
+            Console.WriteLine("  1. 사용자 입력 처리");
+            Console.WriteLine("  2. 실제 계산 수행");
+            Console.WriteLine("  3. 메모리 할당/해제");
+            Console.WriteLine("  4. 예외 처리");
+            Console.WriteLine("  5. 가상 메서드 호출 결정 (다형성)");
+            Console.WriteLine();
+
+            // 런타임 예제 - 사용자 입력
+            Console.WriteLine("[런타임 예제 - 사용자 입력]");
+            Console.WriteLine("숫자를 입력하세요 (런타임에 결정됨):");
+            string input = Console.ReadLine();  // 런타임: 실제 사용자 입력
+
+            try
+            {
+                int number = int.Parse(input);           // 런타임: 문자열을 숫자로 변환 시도
+                int result = a + number;                 // 런타임: 실제 덧셈 계산 수행
+                Console.WriteLine($"결과: {a} + {number} = {result}");
+                Console.WriteLine("성공: 런타임에 정상 처리되었습니다.");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("실패: 런타임에 변환 에러가 발생했습니다!");  // 런타임: 예외 처리
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("========================================");
+            Console.WriteLine();
+
+            // ==========================================
+            // 업캐스팅에서 컴파일타임 vs 런타임
+            // ==========================================
+            Console.WriteLine("=== 업캐스팅에서 컴파일타임 vs 런타임 ===");
+            Console.WriteLine();
+
+            // 컴파일타임 과정 설명
+            Console.WriteLine("■ 컴파일타임 과정:");
+            Console.WriteLine("  1. Dog 클래스가 Animal을 상속하는지 확인");
+            Console.WriteLine("  2. 업캐스팅이 가능한지 검사");
+            Console.WriteLine("  3. Animal.MakeSound() 메서드 존재 확인");
+            Console.WriteLine("  4. virtual 키워드 확인");
+            Console.WriteLine("  → 컴파일 성공!");
+            Console.WriteLine();
+
+            // 실제 업캐스팅 수행
+            Console.WriteLine("■ 실제 업캐스팅 수행:");
             Dog myDog = new Dog { Name = "바둑이", Breed = "진돗개" };
             Console.WriteLine($"Dog 객체 생성: {myDog.Name} ({myDog.Breed})");
 
-            // 2단계: 업캐스팅 - Dog(자식) → Animal(부모)
-            // 암시적 변환으로 자동 수행됨 (안전함)
-            Animal animal = myDog;
+            Animal animal = myDog; // 업캐스팅 (컴파일타임에 허용, 런타임에 실행)
             Console.WriteLine("업캐스팅 완료: Dog → Animal");
             Console.WriteLine();
 
-            // 3단계: 업캐스팅 후 접근 가능한 멤버 확인
-            Console.WriteLine("업캐스팅 후 속성 접근:");
-            Console.WriteLine($"myDog.Name: {myDog.Name}");     // ✅ Dog 타입으로 접근
-            Console.WriteLine($"myDog.Breed: {myDog.Breed}");   // ✅ Dog 고유 속성 접근 가능
-            Console.WriteLine($"animal.Name: {animal.Name}");   // ✅ Animal 타입으로 접근 (같은 객체!)
-            // Console.WriteLine($"animal.Breed: {animal.Breed}"); // ❌ 컴파일 에러! Animal에는 Breed 없음
+            // 런타임 과정 설명  
+            Console.WriteLine("■ 런타임 과정:");
+            Console.WriteLine("  1. 실제 Dog 객체가 메모리에 생성됨");
+            Console.WriteLine("  2. animal 변수가 Dog 객체를 참조하게 됨");
+            Console.WriteLine("  3. MakeSound() 호출 시:");
+            Console.WriteLine("     - 컴파일타임: Animal.MakeSound() 확인");
+            Console.WriteLine("     - 런타임: 실제 객체(Dog) 타입 확인");
+            Console.WriteLine("     - 런타임: Dog.MakeSound() 실행!");
             Console.WriteLine();
 
-            // 4단계: 다형성 동작 확인
-            Console.WriteLine("다형성 동작 확인:");
-            Console.WriteLine("myDog.MakeSound() 호출:");
-            myDog.MakeSound();   // Dog의 MakeSound() 호출
-
-            Console.WriteLine("animal.MakeSound() 호출:");
-            animal.MakeSound();  // 여전히 Dog의 MakeSound() 호출! (다형성의 핵심)
-
-            Console.WriteLine("animal.Sleep() 호출:");
-            animal.Sleep();      // 부모 클래스의 공통 메서드 호출
+            // 다형성 동작 확인
+            Console.WriteLine("■ 다형성 동작 확인:");
+            Console.WriteLine("animal.MakeSound() 호출 → ");
+            animal.MakeSound();  // 런타임에 Dog의 MakeSound() 호출됨!
+            Console.WriteLine("→ 런타임에 Dog의 MakeSound()가 실행되었습니다!");
             Console.WriteLine();
 
-            // 5단계: 참조와 타입 정보 확인
-            Console.WriteLine("참조와 타입 정보:");
-            Console.WriteLine($"같은 객체 참조? {ReferenceEquals(myDog, animal)}"); // True
-            Console.WriteLine($"myDog의 실제 타입: {myDog.GetType()}");           // Dog
-            Console.WriteLine($"animal이 가리키는 실제 타입: {animal.GetType()}"); // Dog (Animal이 아님!)
-            Console.WriteLine();
-            Console.WriteLine(new string('=', 60));
+            Console.WriteLine("========================================");
             Console.WriteLine();
 
             // ==========================================
-            // 다운캐스팅 (Downcasting) 예제
+            // 다운캐스팅에서 컴파일타임 vs 런타임
             // ==========================================
-            Console.WriteLine("=== 다운캐스팅 예제 ===");
-            Console.WriteLine();
-            Console.WriteLine("다운캐스팅: 부모 타입으로 참조된 객체를 다시 자식 타입으로 변환");
-            Console.WriteLine("특징: 명시적으로 수행해야 함, 위험한 변환 (실패 가능)");
+            Console.WriteLine("=== 다운캐스팅에서 컴파일타임 vs 런타임 ===");
             Console.WriteLine();
 
             // 테스트용 객체들 준비
-            Animal animal1 = new Dog { Name = "검둥이", Breed = "진돗개" };  // Dog 객체를 Animal로 업캐스팅
-            Animal animal2 = new Cat { Name = "나비", isIndoor = true };    // Cat 객체를 Animal로 업캐스팅
-            Animal animal3 = new Animal { Name = "일반동물" };               // 순수 Animal 객체
+            Animal animal1 = new Dog { Name = "검둥이", Breed = "진돗개" };  // 실제: Dog
+            Animal animal2 = new Cat { Name = "나비", isIndoor = true };    // 실제: Cat
 
-            // 각 객체의 실제 타입 확인
-            Console.WriteLine("테스트 객체들:");
-            Console.WriteLine($"animal1 - 변수타입: Animal, 실제타입: {animal1.GetType().Name}, 이름: {((Dog)animal1).Name}");
-            Console.WriteLine($"animal2 - 변수타입: Animal, 실제타입: {animal2.GetType().Name}, 이름: {((Cat)animal2).Name}");
-            Console.WriteLine($"animal3 - 변수타입: Animal, 실제타입: {animal3.GetType().Name}, 이름: {animal3.Name}");
+            Console.WriteLine("■ 테스트 객체 준비:");
+            Console.WriteLine($"animal1: Animal 타입, 실제로는 {animal1.GetType().Name}");
+            Console.WriteLine($"animal2: Animal 타입, 실제로는 {animal2.GetType().Name}");
             Console.WriteLine();
 
             // ==========================================
-            // 방법 1: 직접 캐스팅 (위험한 방법)
+            // 방법 1: 직접 캐스팅에서 컴파일타임 vs 런타임
             // ==========================================
-            Console.WriteLine("=== 방법 1: 직접 캐스팅 (위험!) ===");
-            Console.WriteLine("문법: (타입)객체");
+            Console.WriteLine("■ 방법 1: 직접 캐스팅에서 컴파일타임 vs 런타임");
+            Console.WriteLine();
+
+            Console.WriteLine("코드: Dog dog1 = (Dog)animal1;");
+            Console.WriteLine("▶ 컴파일타임:");
+            Console.WriteLine("  - Animal을 Dog로 캐스팅하는 문법 확인");
+            Console.WriteLine("  - Dog 클래스가 Animal을 상속하는지 확인");
+            Console.WriteLine("  - 문법적으로 가능하므로 컴파일 성공");
             Console.WriteLine();
 
             try
             {
-                Console.WriteLine("1-1. animal1 (실제 Dog)을 Dog로 캐스팅 시도:");
-                Dog dog1 = (Dog)animal1; // ✅ 성공! 실제로 Dog 객체이므로
-                Console.WriteLine($"✅ 성공: {dog1.Name}, 품종: {dog1.Breed}");
-                dog1.Fetch(); // Dog 고유 메서드 사용 가능
+                Console.WriteLine("▶ 런타임:");
+                Console.WriteLine("  - animal1이 가리키는 실제 객체 타입 확인");
+                Console.WriteLine($"  - 실제 타입: {animal1.GetType().Name}");
+                Console.WriteLine("  - Dog 타입이므로 캐스팅 가능");
+
+                Dog dog1 = (Dog)animal1; // 런타임에 성공
+                Console.WriteLine($"  ✅ 성공: {dog1.Name} ({dog1.Breed})");
+                dog1.Fetch();
                 Console.WriteLine();
 
-                Console.WriteLine("1-2. animal2 (실제 Cat)을 Dog로 캐스팅 시도:");
-                Console.WriteLine("🚨 주의: Cat 객체를 Dog로 변환하려고 시도 중...");
-                Dog dog2 = (Dog)animal2; // ❌ 실패! Cat을 Dog로 변환 불가
-                Console.WriteLine("이 줄은 실행되지 않습니다.");
+                Console.WriteLine("코드: Dog dog2 = (Dog)animal2;");
+                Console.WriteLine("▶ 컴파일타임:");
+                Console.WriteLine("  - 동일한 문법이므로 컴파일 성공");
+                Console.WriteLine();
+                Console.WriteLine("▶ 런타임:");
+                Console.WriteLine("  - animal2가 가리키는 실제 객체 타입 확인");
+                Console.WriteLine($"  - 실제 타입: {animal2.GetType().Name}");
+                Console.WriteLine("  - Cat을 Dog로 변환하려고 시도...");
+
+                Dog dog2 = (Dog)animal2; // 런타임에 실패!
             }
             catch (InvalidCastException ex)
             {
-                Console.WriteLine($"💥 런타임 에러 발생!");
-                Console.WriteLine($"에러 타입: InvalidCastException");
-                Console.WriteLine($"에러 메시지: {ex.Message}");
-                Console.WriteLine();
-                Console.WriteLine("🔍 실패 이유:");
-                Console.WriteLine("  • animal2는 실제로 Cat 객체");
-                Console.WriteLine("  • Cat을 Dog로 변환하려고 시도");
-                Console.WriteLine("  • Cat과 Dog는 형제 관계라서 서로 변환 불가능");
-                Console.WriteLine("  • 런타임에 타입 안전성을 위해 예외 발생");
-                Console.WriteLine();
+                Console.WriteLine("  ❌ 런타임 에러 발생!");
+                Console.WriteLine($"  - 에러 타입: InvalidCastException");
+                Console.WriteLine("  - 이유: Cat 객체를 Dog로 변환 불가능");
+                Console.WriteLine("  - 형제 클래스는 서로 변환 불가");
             }
-
-            // ==========================================
-            // 방법 2: as 연산자 (안전한 방법)
-            // ==========================================
-            Console.WriteLine("=== 방법 2: as 연산자 (안전!) ===");
-            Console.WriteLine("문법: 객체 as 타입");
-            Console.WriteLine("특징: 실패 시 예외 대신 null 반환");
             Console.WriteLine();
 
-            Console.WriteLine("2-1. animal1 (실제 Dog)을 Dog로 변환:");
-            Dog dog3 = animal1 as Dog;
+            // ==========================================
+            // 방법 2: as 연산자에서 컴파일타임 vs 런타임
+            // ==========================================
+            Console.WriteLine("■ 방법 2: as 연산자에서 컴파일타임 vs 런타임");
+            Console.WriteLine();
+
+            Console.WriteLine("코드: Dog dog3 = animal1 as Dog;");
+            Console.WriteLine("▶ 컴파일타임:");
+            Console.WriteLine("  - as 연산자 문법 확인");
+            Console.WriteLine("  - 타입 호환성 확인");
+            Console.WriteLine("  - 컴파일 성공");
+            Console.WriteLine();
+
+            Console.WriteLine("▶ 런타임:");
+            Dog dog3 = animal1 as Dog; // 런타임에 타입 확인
             if (dog3 != null)
             {
-                Console.WriteLine($"✅ 성공: {dog3.Name}, 품종: {dog3.Breed}");
-                dog3.Guard();
+                Console.WriteLine("  - 실제 타입 확인: Dog");
+                Console.WriteLine("  - 변환 가능하므로 Dog 객체 반환");
+                Console.WriteLine($"  ✅ 성공: {dog3.Name}");
             }
             else
             {
-                Console.WriteLine("❌ 변환 실패: null 반환됨");
+                Console.WriteLine("  - 변환 불가능하므로 null 반환");
             }
-            Console.WriteLine();
 
-            Console.WriteLine("2-2. animal2 (실제 Cat)을 Dog로 변환:");
-            Dog dog4 = animal2 as Dog;
+            Dog dog4 = animal2 as Dog; // Cat을 Dog로 변환 시도
             if (dog4 != null)
             {
-                Console.WriteLine($"✅ 성공: {dog4.Name}, 품종: {dog4.Breed}");
-                dog4.Guard();
+                Console.WriteLine($"  ✅ 성공: {dog4.Name}");
             }
             else
             {
-                Console.WriteLine("❌ 변환 실패: null 반환됨 (Cat을 Dog로 변환 불가)");
+                Console.WriteLine("  - 실제 타입: Cat");
+                Console.WriteLine("  - Dog로 변환 불가능");
+                Console.WriteLine("  ❌ null 반환 (예외 없이 안전하게 실패)");
             }
             Console.WriteLine();
 
             // ==========================================
-            // 방법 3: is 연산자 (타입 체크 후 캐스팅)
+            // 방법 3: is 연산자에서 컴파일타임 vs 런타임
             // ==========================================
-            Console.WriteLine("=== 방법 3: is 연산자 (타입 체크) ===");
-            Console.WriteLine("문법: if (객체 is 타입) { 캐스팅 }");
-            Console.WriteLine("특징: 타입 체크 후 안전하게 캐스팅");
+            Console.WriteLine("■ 방법 3: is 연산자에서 컴파일타임 vs 런타임");
             Console.WriteLine();
 
-            Console.WriteLine("3-1. animal1이 Dog인지 확인 후 변환:");
-            if (animal1 is Dog)
+            Console.WriteLine("코드: if (animal1 is Dog)");
+            Console.WriteLine("▶ 컴파일타임:");
+            Console.WriteLine("  - is 연산자 문법 확인");
+            Console.WriteLine("  - 타입 비교 가능성 확인");
+            Console.WriteLine("  - 컴파일 성공");
+            Console.WriteLine();
+
+            Console.WriteLine("▶ 런타임:");
+            if (animal1 is Dog) // 런타임에 실제 타입 검사
             {
-                Dog dog5 = (Dog)animal1;
-                Console.WriteLine($"✅ Dog 타입 확인됨: {dog5.Name}");
-                dog5.Fetch();
+                Console.WriteLine("  - 실제 객체 타입 확인: Dog");
+                Console.WriteLine("  - 조건문 true");
+                Dog dog5 = (Dog)animal1; // 안전하게 캐스팅
+                Console.WriteLine($"  ✅ 안전한 캐스팅 성공: {dog5.Name}");
             }
             else
             {
-                Console.WriteLine("❌ Dog 타입이 아닙니다.");
+                Console.WriteLine("  - Dog 타입이 아님");
             }
-            Console.WriteLine();
 
-            Console.WriteLine("3-2. animal2가 Dog인지 확인 후 변환:");
             if (animal2 is Dog)
             {
-                Dog dog6 = (Dog)animal2;
-                Console.WriteLine($"✅ Dog 타입 확인됨: {dog6.Name}");
+                Console.WriteLine("  - 이 줄은 실행되지 않음");
             }
             else
             {
-                Console.WriteLine("❌ Dog 타입이 아닙니다. (실제로는 Cat)");
+                Console.WriteLine("  - 실제 객체 타입 확인: Cat");
+                Console.WriteLine("  - Dog가 아니므로 조건문 false");
+                Console.WriteLine("  ✅ 안전하게 타입 불일치 감지");
             }
             Console.WriteLine();
 
             // ==========================================
-            // 방법 4: 패턴 매칭 (가장 현대적이고 권장되는 방법)
+            // 방법 4: 패턴 매칭에서 컴파일타임 vs 런타임
             // ==========================================
-            Console.WriteLine("=== 방법 4: 패턴 매칭 (C# 7.0+, 권장!) ===");
-            Console.WriteLine("문법: if (객체 is 타입 변수명) { 변수명 사용 }");
-            Console.WriteLine("특징: 타입 체크와 변수 선언을 한 번에 처리");
+            Console.WriteLine("■ 방법 4: 패턴 매칭에서 컴파일타임 vs 런타임");
             Console.WriteLine();
 
-            Console.WriteLine("4-1. animal1 패턴 매칭:");
-            if (animal1 is Dog dog7)
+            Console.WriteLine("코드: if (animal1 is Dog dog7)");
+            Console.WriteLine("▶ 컴파일타임:");
+            Console.WriteLine("  - 패턴 매칭 문법 확인 (C# 7.0+)");
+            Console.WriteLine("  - 변수 선언과 타입 체크 조합 확인");
+            Console.WriteLine("  - 컴파일 성공");
+            Console.WriteLine();
+
+            Console.WriteLine("▶ 런타임:");
+            if (animal1 is Dog dog7) // 런타임에 타입 체크 + 변수 할당
             {
-                Console.WriteLine($"✅ Dog로 확인됨: {dog7.Name} ({dog7.Breed})");
+                Console.WriteLine("  - 실제 타입 확인: Dog");
+                Console.WriteLine("  - 타입 일치하므로 dog7 변수에 할당");
+                Console.WriteLine($"  - dog7 사용 가능: {dog7.Name} ({dog7.Breed})");
+                Console.WriteLine("  ✅ 타입 체크와 변수 할당을 한 번에 처리");
                 dog7.Fetch();
-                dog7.Guard();
             }
-            else
-            {
-                Console.WriteLine("❌ Dog가 아닙니다.");
-            }
-            Console.WriteLine();
 
-            Console.WriteLine("4-2. animal2 패턴 매칭 (Cat으로 시도):");
-            if (animal2 is Cat cat1)
+            if (animal2 is Cat cat1) // Cat으로 패턴 매칭
             {
-                Console.WriteLine($"✅ Cat으로 확인됨: {cat1.Name} (실내묘: {cat1.isIndoor})");
+                Console.WriteLine("  - 실제 타입 확인: Cat");
+                Console.WriteLine("  - 타입 일치하므로 cat1 변수에 할당");
+                Console.WriteLine($"  - cat1 사용 가능: {cat1.Name}");
+                Console.WriteLine("  ✅ Cat 전용 기능 사용 가능");
                 cat1.Climb();
             }
-            else
-            {
-                Console.WriteLine("❌ Cat이 아닙니다.");
-            }
             Console.WriteLine();
-
-            Console.WriteLine("4-3. animal2를 Dog로 시도 (실패 예상):");
-            if (animal2 is Dog dog8)
-            {
-                Console.WriteLine($"✅ Dog로 확인됨: {dog8.Name}");
-            }
-            else
-            {
-                Console.WriteLine("❌ Dog가 아닙니다. (예상된 결과)");
-            }
-            Console.WriteLine();
-
-            // ==========================================
-            // switch 패턴 매칭 (고급 활용)
-            // ==========================================
-            Console.WriteLine("=== 고급: switch 패턴 매칭 ===");
-            Console.WriteLine();
-
-            Animal[] animals = { animal1, animal2, animal3 };
-
-            for (int i = 0; i < animals.Length; i++)
-            {
-                Console.WriteLine($"animals[{i}] 처리:");
-
-                switch (animals[i])
-                {
-                    case Dog dog:
-                        Console.WriteLine($"  🐕 Dog 발견: {dog.Name} ({dog.Breed})");
-                        dog.Fetch();
-                        break;
-
-                    case Cat cat:
-                        Console.WriteLine($"  🐱 Cat 발견: {cat.Name} (실내묘: {cat.isIndoor})");
-                        cat.Climb();
-                        break;
-
-                    case Animal animal4 when animal.GetType() == typeof(Animal):
-                        Console.WriteLine($"  🐾 일반 Animal: {animal.Name}");
-                        animal.MakeSound();
-                        break;
-
-                    default:
-                        Console.WriteLine("  ❓ 알 수 없는 타입");
-                        break;
-                }
-                Console.WriteLine();
-            }
 
             // ==========================================
             // 핵심 정리
             // ==========================================
-            Console.WriteLine(new string('=', 60));
-            Console.WriteLine("🎯 캐스팅 핵심 정리");
-            Console.WriteLine(new string('=', 60));
+            Console.WriteLine("========================================");
+            Console.WriteLine("             핵심 정리");
+            Console.WriteLine("========================================");
             Console.WriteLine();
-            Console.WriteLine("📈 업캐스팅 (자식 → 부모):");
-            Console.WriteLine("  • 항상 안전함 (자동 수행)");
-            Console.WriteLine("  • 다형성의 기반");
-            Console.WriteLine("  • 부모 타입의 멤버만 접근 가능");
+
+            Console.WriteLine("■ 컴파일타임 (Compile Time):");
+            Console.WriteLine("  - 시점: 코드 작성 후, 실행 전");
+            Console.WriteLine("  - 역할: 문법 검사, 타입 검사, 메서드 존재 확인");
+            Console.WriteLine("  - 캐스팅: 문법적 가능성만 확인");
+            Console.WriteLine("  - 에러: 컴파일 에러 (코드 수정 필요)");
             Console.WriteLine();
-            Console.WriteLine("📉 다운캐스팅 (부모 → 자식):");
-            Console.WriteLine("  • 위험할 수 있음 (수동 수행)");
-            Console.WriteLine("  • 실제 객체 타입과 일치할 때만 성공");
-            Console.WriteLine("  • 반드시 안전장치 사용 권장");
+
+            Console.WriteLine("■ 런타임 (Runtime):");
+            Console.WriteLine("  - 시점: 프로그램 실행 중");
+            Console.WriteLine("  - 역할: 실제 객체 타입 확인, 메모리 관리, 계산 수행");
+            Console.WriteLine("  - 캐스팅: 실제 타입 일치 여부 확인");
+            Console.WriteLine("  - 에러: 런타임 에러/예외 (try-catch로 처리)");
             Console.WriteLine();
-            Console.WriteLine("🛡️ 안전한 다운캐스팅 방법:");
-            Console.WriteLine("  1. as 연산자 + null 체크");
-            Console.WriteLine("  2. is 연산자 + 타입 체크");
-            Console.WriteLine("  3. 패턴 매칭 (권장)");
-            Console.WriteLine("  4. try-catch 예외 처리");
+
+            Console.WriteLine("■ 다형성에서의 동작:");
+            Console.WriteLine("  - 컴파일타임: 부모 타입 메서드 존재 확인");
+            Console.WriteLine("  - 런타임: 실제 객체 타입의 메서드 호출");
+            Console.WriteLine("  → 같은 코드, 다른 동작! (다형성의 핵심)");
             Console.WriteLine();
-            Console.WriteLine("⚠️ 피해야 할 것:");
-            Console.WriteLine("  • 타입 체크 없는 직접 캐스팅");
-            Console.WriteLine("  • 형제 클래스 간 변환 시도");
+
+            Console.WriteLine("■ 안전한 다운캐스팅:");
+            Console.WriteLine("  1. as 연산자: 실패 시 null 반환");
+            Console.WriteLine("  2. is 연산자: 타입 체크 후 안전 캐스팅");
+            Console.WriteLine("  3. 패턴 매칭: 체크 + 할당 한 번에 (권장)");
+            Console.WriteLine("  4. try-catch: 예외 처리로 안전성 확보");
         }
     }
 }
