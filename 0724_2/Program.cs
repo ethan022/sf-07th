@@ -320,6 +320,60 @@ namespace _0724_2
                 - 생성과 동시에 속성 설정
                 - 코드 간결성과 가독성 향상
              */
+
+
+            Vehicle[] vehicles = {
+            new Car { Brand = "현대", Speed = 120 },
+            new Airplane { Brand = "보잉", Speed = 900 },
+            new Ship { Brand = "삼성중공업", Speed = 30 }
+            };
+
+            foreach (Vehicle vehicle in vehicles)
+            {
+                Console.WriteLine($"{vehicle.Brand} - 속도: {vehicle.Speed}km/h");
+                vehicle.Move();
+                Console.WriteLine();
+            }
+
+            // 계산기 객체 생성
+            Calculator calculator = new Calculator();
+
+            Console.WriteLine(calculator.Multiply(2, 3));
+            Console.WriteLine(calculator.Multiply(2, 3, 4, 5, 6,1,2,3,4));
+            Console.WriteLine(calculator.Multiply(2.1, 3.1));
+            Console.WriteLine(calculator.Multiply(3, 4, 5));
+            Console.WriteLine(calculator.Multiply(2, 3, 4, 5, 6));
+
+
+            Animal1[] animals1 = {
+            new Dog1 { Name = "바둑이", Age = 3 },
+            new Cat1 { Name = "나비", Age = 2 },
+            new Elephant1 { Name = "코끼", Age = 10 }
+            };
+
+            // 모든 동물 소리내기
+            foreach (Animal1 animal in animals1)
+            {
+                animal.MakeSound();
+            }
+
+            // 먹이 주기 (IEatable 구현 동물만)
+            foreach (Animal1 animal in animals1)
+            {
+                if (animal is IEatable eater)
+                {
+                    eater.Eat("사료");
+                }
+            }
+
+            // 훈련시키기 (ITrainable 구현 동물만)
+            foreach (Animal1 animal in animals1)
+            {
+                if (animal is ITrainable trainee)
+                {
+                    trainee.Train("앉아");
+                }
+            }
         }
     }
 }

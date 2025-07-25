@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 /*
  ================================================================================================
@@ -25,6 +26,8 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+
             // ==========================================
             // 프로그램 시작 - Hello World!
             // ==========================================
