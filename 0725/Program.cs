@@ -59,9 +59,9 @@
             // - 복사할 때 새로운 값이 생성되어 독립적으로 관리됨
 
             int number = 10;        // 정수 (값 타입)
-            double price = 99.99;   // 실수 (값 타입) - 오타 수정: pice → price
+            double price = 99.99;   // 실수 (값 타입) 
             bool flag = false;      // 불리언 (값 타입)
-            char grade = 'A';       // 문자 (값 타입) - 오타 수정: garde → grade
+            char grade = 'A';       // 문자 (값 타입)
 
             // 값 타입의 복사 예제
             int copy = number;      // number의 값(10)을 copy에 복사
