@@ -142,6 +142,46 @@
 
             Console.WriteLine("area: " + area);              // 출력: area: 78.53981633974483 (π × 5²)
             Console.WriteLine("circumference: " + circumference);  // 출력: circumference: 31.41592653589793 (2 × π × 5)
+
+
+            int[] refArr = new int[5];
+            FillArrayWithRef(ref refArr);
+            Console.WriteLine($"[ref] 배열 값:");
+            foreach (int num  in refArr) 
+            {
+                Console.Write(num + " "); 
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+
+            int[] outArr;
+            CreateAndFillArrayWithOut(out outArr, 10);
+            Console.WriteLine($"[out] 배열 값:");
+            foreach (int num in outArr)
+            {
+                Console.Write(num + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void FillArrayWithRef(ref int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = i + 1;
+            }
+        }
+
+        public static void CreateAndFillArrayWithOut(out int[] arr, int size)
+        {
+
+            // size만큼 배열을 만들겠다.
+            arr = new int[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                arr[i] = i + 1;
+            }
         }
     }
 }
