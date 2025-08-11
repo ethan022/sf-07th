@@ -1,0 +1,29 @@
+﻿<Window x:Class="_0811_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_0811_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Canvas Background="LightBlue">
+        <!-- 절대 좌표로 컨트롤 배치 -->
+        <Button Content="버튼 1" 
+                Canvas.Left="170"
+               Canvas.Top="10"
+                Width="58"
+                Height="84" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="버튼 2" 
+               Canvas.Top="11"
+               Width="58"
+               Height="83" Canvas.Left="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="버튼 3" 
+                 Canvas.Bottom="50"
+                 Width="58"
+                 Height="83" Canvas.Left="89" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="버튼 4" 
+                 Canvas.Right="50"
+                 Width="58"
+                 Height="83" Canvas.Left="242" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </Canvas>
+</Window>

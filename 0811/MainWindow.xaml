@@ -1,0 +1,178 @@
+﻿<Window x:Class="_0811.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_0811"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="850" Width="900">
+    <!-- Grid: 표 형태 레이아웃  -->
+    <!-- -->
+    <Grid ShowGridLines="True">
+        <!-- 행(Row) 정의 -->
+        <Grid.RowDefinitions>
+            <!-- 첫번째 행: 고정 높이 100 -->
+            <RowDefinition Height="100" />          
+            <!-- 두번째 행: 나머지 공간 모두 -->
+            <RowDefinition Height="*"/>
+            <!-- 세번째 행: 나머지 공간 모두  -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 열(Column) 정의 -->
+        <Grid.ColumnDefinitions>
+            <!-- 첫번째 열: 고정 너비 150 -->
+            <ColumnDefinition Width="150" />
+            <!-- 두번째 열: 고정 나머지 공간 -->
+            <ColumnDefinition Width="*" />
+            <!-- 세번째 열: 고정 너비 250 -->
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        <!-- 각 격자에 컨트롤 배치 -->
+        <!-- <TextBlock Grid.Row="0" Grid.Column="0"
+                   Text="텍스트 입니다."
+                   Background="red" 
+                   TextAlignment="Center"
+                   VerticalAlignment="Center" />
+        <TextBlock Grid.Row="0" Grid.Column="1" 
+                   Grid.RowSpan="2"
+                   Grid.ColumnSpan="2"
+                   Text="텍스트 입니다." 
+                   Background="LightBlue"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"/> -->
+        
+        <!-- StackPanel -->
+        <!-- 컨트롤들을 순서대로 일렬로 배치
+            세로 또는 가로 방향 가능
+               간단한 목록이나 버튼 그룹에 적합
+        -->
+
+        <GroupBox Grid.Row="1" Grid.Column="1"
+                  Header="세로 방향 StackPanel" 
+                  Margin="10">
+            <ScrollViewer>
+            <StackPanel Orientation="Vertical"
+                        Margin="10">
+                <Button Content="첫번째 버튼"
+                        Width="100"
+                        Height="20" Click="Button_Click_1" />
+                <Button Content="두번째 버튼"
+                        Height="20" />
+                <Button Content="세번째 버튼"
+                        Height="20" />
+                <Button Content="첫번째 버튼"
+                        Width="100"
+                        Height="20" />
+                <Button Content="두번째 버튼"
+                        Height="20" />
+                <Button Content="세번째 버튼"
+                        Height="20" />
+                <Button Content="첫번째 버튼"
+                        Width="100"
+                        Height="20" />
+                <Button Content="두번째 버튼"
+                        Height="20" />
+                <Button Content="세번째 버튼"
+                        Height="20" />
+            </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Grid.Column="1"
+                  Header="가로 방향 StackPanel" 
+                  Margin="10">
+            <StackPanel Orientation="Horizontal"
+                        Margin="10">
+                <Button Content="첫번째"
+                        Height="100"
+                        Width="40" />
+                <Button Content="두번째"
+                        Width="40" />
+                <Button Content="세번째"
+                        Width="40" />
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="2"
+                  Header="입력 컨트롤 "
+                  Margin="10">
+            <StackPanel Orientation="Vertical">
+
+                <!-- 일반 텍스트 -->
+                <Label Content="일반 텍스트"/>
+                <TextBox x:Name="txtNormal"
+                         Text="여기에 입력하세요"
+                         Margin="0,0,0,10" />
+
+
+                <!-- 비밀번호 텍스트 -->
+                <Label Content="비밀번호:"/>
+                <PasswordBox x:Name="txtPassword"
+                        Margin="0,0,0,10" />
+
+                <Label Content="여러줄 텍스트:"/>
+
+                <!-- 여러줄 텍스트 -->
+                <!-- Heigh : 높이 -->
+                <!-- TextWrapping : 글자가 영역 너비를 넘어가면 줄바꿈 -->
+                <!-- AcceptsReturn : Enter키로 줄바꿈 -->
+                <!-- VerticalScrollBarVisibility : 내용이 너무 많으면 스크롤바 표시 -->
+                <TextBox x:Name="txtMultiline"
+                         Height="60" 
+                         TextWrapping="Wrap" 
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"/>
+                
+            </StackPanel>
+        </GroupBox>
+        
+        <GroupBox Grid.Row="2" Grid.Column="2"
+                  Header="선택 컨트롤 "
+                  Margin="10">
+            <StackPanel Orientation="Vertical">
+                <Label Content="체크 박스"/>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="checkOption1"
+                              Content="옵션 1"/>
+                    <CheckBox x:Name="checkOption2"
+                        Content="옵션 2"/>
+                </StackPanel>
+
+                <Label Content="라디오 버튼"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="rbOption1"
+                                 Content="선택지1"
+                                 GroupName="rbGroup"/>
+                    <RadioButton x:Name="rbOption2"
+                                 Content="선택지2"
+                                 GroupName="rbGroup"/>
+                    <RadioButton x:Name="rbOption3"
+                                 Content="선택지3"
+                                 GroupName="rbGroup"/>
+                </StackPanel>
+
+                <Label Content="콤보 박스"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="cmb">
+                        <ComboBoxItem Content="서울" IsSelected="True"/>
+                        <ComboBoxItem Content="부산"/>
+                        <ComboBoxItem Content="대전"/>
+                        <ComboBoxItem Content="인천"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <Label Content="리스트 박스"/>
+                <StackPanel Orientation="Horizontal">
+                    <ListBox x:Name="lb">
+                        <ListBoxItem Content="서울" IsSelected="True"/>
+                        <ListBoxItem Content="부산"/>
+                        <ListBoxItem Content="대전"/>
+                        <ListBoxItem Content="인천"/>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+            
+            
+        </GroupBox>
+        
+    </Grid>
+</Window>
