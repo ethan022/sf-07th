@@ -1,0 +1,84 @@
+﻿<Window x:Class="_0818_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_0818_2"
+        mc:Ignorable="d"
+        Title="계산기" Height="420" Width="520"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Margin="20" >
+          
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- 제목 -->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="계산기"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,16"/>
+
+        <!-- 
+         Mode=TwoWay :
+           - View(TextBox)에서 ViewModel(속성)로 값이 전달되고
+           - ViewModel에서 바뀐 값도 다시 View(TextBox)에 반영됨 (양방향 바인딩)
+
+         UpdateSourceTrigger=PropertyChanged :
+           - 기본값은 'LostFocus' (포커스를 잃을 때 ViewModel로 값이 전달됨)
+           - 'PropertyChanged'로 설정하면 글자가 입력될 때마다 즉시 ViewModel 속성이 갱신됨
+        -->
+        
+        <!-- 첫번째 숫자 -->
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="첫번째 숫자"
+                   VerticalAlignment="Center" Margin="0,0,12,0"/>
+        <TextBox   Grid.Row="1" Grid.Column="1"
+                   x:Name="txtFirst"
+                   Text="{Binding FirstNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   FontSize="14" BorderThickness="1" Padding="6"
+                   ToolTip="숫자를 입력하세요"/>
+
+        <!-- 두번째 숫자 -->
+        <TextBlock Grid.Row="2" Grid.Column="0"
+                   Text="두번째 숫자"
+                   VerticalAlignment="Center" Margin="0,8,12,0"/>
+        <TextBox   Grid.Row="2" Grid.Column="1"
+                   x:Name="txtSecond"
+                   Text="{Binding SecondNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   FontSize="14" BorderThickness="1" Padding="6" Margin="0,8,0,0"
+                   ToolTip="숫자를 입력하세요"/>
+
+        <!-- 연산자 버튼 -->
+        <TextBlock Grid.Row="3" Grid.Column="0"
+                   Text="연산자" VerticalAlignment="Center" Margin="0,12,12,0"/>
+        <UniformGrid Grid.Row="3" Grid.Column="1" Margin="0,12,0,0" Rows="1" Columns="5">
+            <Button Content="+" Width="90" Height="36" Command="{Binding AddCommand}" />
+            <Button Content="-" Width="90" Height="36" Command="{Binding SubtractCommand}" />
+            <Button Content="×" Width="90" Height="36" Command="{Binding MultiplyCommand}" />
+            <Button Content="÷" Width="90" Height="36" Command="{Binding DivideCommand}" />
+            <Button Content="Clear" Width="90" Height="36" Command="{Binding ClearCommand}" />
+        </UniformGrid>
+
+        <!-- 결과 -->
+        <TextBlock Grid.Row="4" Grid.Column="0"
+                   Text="결과 숫자" VerticalAlignment="Center" Margin="0,12,12,0"/>
+        <TextBox   Grid.Row="4" Grid.Column="1"
+                   x:Name="txtResult"
+                   Text="{Binding ResultNumber}"
+                   FontSize="14" BorderThickness="1" Padding="6" Margin="0,12,0,0"
+                   IsReadOnly="True" Background="#FFF8F8F8"/>
+    </Grid>
+</Window>
